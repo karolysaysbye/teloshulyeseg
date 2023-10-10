@@ -1,0 +1,36 @@
+<div class="container">
+    <input [(ngModel)]="searchText" class="form-control mt-3 mb-3" type="search" placeholder="Keresés a telefonok között" aria-label="Search">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Modell</th>
+                <th scope="col">Kamera</th>
+                <th scope="col">Szín</th>
+                <th scope="col">Tárhely</th>
+                <th scope="col">Ár</th>
+                <th scope="col">Raktáron van</th>
+                <th scope="col">Komment</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let phone of phones | filter: searchText">
+                <td>{{phone.model}}</td>
+                <td>{{phone.camera}}</td>
+                <td>{{getColor(phone.color_code)?.megnevezes}}</td>
+                <td>{{phone.storage}}</td>
+                <td>{{phone.price}}</td>
+                <td>{{phone.available? 'Igen' : 'Nem'}}</td>
+                <td>{{phone.comment.text}}</td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="1" #db>
+                        <span class="form-control">Db</span>
+                        <button (click)="addTetel(phone.model, db.value, phone.color_code, phone.storage, phone.price)"
+                            class="btn btn-success">Kosárba</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

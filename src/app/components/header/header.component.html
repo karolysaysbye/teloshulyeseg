@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" routerLink="telefonok">Menő Telefonos WebShop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link active" routerLink="telefonok" routerLinkActive="current">Telefonok</a>
+          <a class="nav-link active" routerLink="szerkesztes" routerLinkActive="current">Szekesztés</a>
+          <a class="nav-link active" routerLink="kosar" routerLinkActive="current">Kosár ({{kosarban()}})</a>
+        </div>
+      </div>
+    </div>
+  </nav>

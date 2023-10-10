@@ -1,0 +1,55 @@
+<div *ngIf="tetelek && tetelek.length !== 0; else noBasket" class="container">
+    <h2 class="mt-3 mb-3 text-center">Kosár</h2>
+   <span>Neved</span>
+    <input [(ngModel)]="nev" class="form-control" type="text">
+    <span>Címed:</span>
+    <input [(ngModel)]="cim" class="form-control" type="text">
+    <ng-container *ngIf="!cim">
+        <div class="alert alert-warning mt-3" role="alert">
+            Név és cím kitöltése kötelező!
+          </div>
+    </ng-container>
+    <div >
+        <p>Empty Basket</p>
+      </div>
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Modell</th>
+            <th scope="col">Szín</th>
+            <th scope="col">Tárhely</th>
+            <th scope="col">Darab</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tetel of tetelek">
+            <td>{{tetel.model}}</td>
+            <td>{{getColor(tetel.color_code)?.megnevezes}}</td>
+            <td>{{tetel.storage}}</td>
+            <td>{{tetel.db}} Db</td>
+            <td>
+                <button (click)="deleteOne(tetel)" class="btn btn-warning float-end">Törlöm</button>
+            </td>
+          </tr>
+        </tbody>
+        <h2 *ngIf="finalPrice(tetelek) != 0; else noBasket" class="mt-3">Összesen: {{finalPrice(tetelek)}} Ft</h2>
+      </table>
+      
+      <button (click)="deleteAll()" class="btn btn-danger mt-3">Összes törlése</button>
+      <br>
+      <button *ngIf="nev && cim;else noorder" (click)="addFinalOrder(tetelek)" class="btn btn-success mt-3">Megredenelem</button>
+      <ng-template #noorder>
+        <button disabled class="btn btn-success mt-3">Megredenelem</button>
+      </ng-template>
+</div>
+
+<ng-template #noBasket>
+    <h2 class="text-center mt-3">Jelenleg nincsenek termékek a kosaradban!
+        <br>
+        <button (click)="goBack()" class="btn btn-success mt-3">Vissza a telefonokhoz</button>
+    </h2>
+
+   </ng-template>
+
+
